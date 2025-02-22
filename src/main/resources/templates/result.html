@@ -1,0 +1,42 @@
+<!-- src/main/resources/templates/result.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>API Response</title>
+    <style>
+
+        table, th, td {
+            border: 1px solid black;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h2 th:text="'Forex Exchange Rate for Unit '+${iso}"></h2>
+<div>
+    <nav><a href="/">Home</a></nav>
+    <div>
+        <div th:if="${response != null}">
+            <table>
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Buying Rate (in Nrs.)</th>
+                    <th>Selling Rate(in Nrs.)</th>
+                    <th>Average Rate(in Nrs.)</th>
+                </tr>
+                </thead>
+                <tbody th:each="payload:${response.data.payload}">
+                <tr th:each="rate:${payload.rates}" th:if="${rate.currency.ISO3 == iso}">
+                    <td th:text="${payload.date}"></td>
+                    <td th:text="${#numbers.formatDecimal((rate.buy/rate.currency.unit),1,2)}"></td>
+                    <td th:text="${#numbers.formatDecimal((rate.sell/rate.currency.unit),1,2)}"></td>
+                    <td th:text="${#numbers.formatDecimal(((rate.buy+rate.sell)/2),2,2)}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!-- src/main/resources/templates/form.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forex Rate Query</title>
+</head>
+<body onload="mainFunction()">
+<h1>Enter Forex Rate Query Parameters for Nepalese Currency</h1>
+<form action="/getRates" method="post">
+
+    <label for="iso">Select Currency:</label>
+    <select id="iso" name="iso">
+        <option value="INR">Indian Rupee</option>
+        <option value="USD">U.S. Dollar</option>
+        <option value="EUR">European Euro</option>
+        <option value="GBP">UK Pound Sterling</option>
+        <option value="CHF">Swiss Franc</option>
+        <option value="AUD">Australian Dollar</option>
+        <option value="CAD">Canadian Dollar</option>
+        <option value="SGD">Singapore Dollar</option>
+        <option value="JPY">Japanese Yen</option>
+        <option value="CNY">Chinese Yuan</option>
+        <option value="SAR">Saudi Arabian Riyal</option>
+        <option value="QAR">Qatari Riyal</option>
+        <option value="THB">Thai Baht</option>
+        <option value="AED">UAE Dirham</option>
+        <option value="MYR">Malaysian Ringgit</option>
+        <option value="KRW">South Korean Won</option>
+        <option value="SEK">Swedish Kroner</option>
+        <option value="DKK">Danish Kroner</option>
+        <option value="HKD">Hong Kong Dollar</option>
+        <option value="KWD">Kuwaiti Dinar</option>
+        <option value="BHD">Bahrain Dinar</option>
+    </select>
+    <br><br>
+    <label for="fromDate">From Date:</label>
+    <input type="date" id="fromDate" name="from" max='' required oninput="validateToDate()"><br><br>
+
+    <label for="toDate">To Date:</label>
+    <input type="date" id="toDate" name="to" max='' min='' required disabled><br><br>
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    const today = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
+    const fromDate = document.getElementById('fromDate');
+    const toDate = document.getElementById('toDate');
+
+    function mainFunction() {
+        fromDate.setAttribute('max', today);
+    }
+
+    function validateToDate() {
+        toDate.disabled = false;
+        toDate.setAttribute('min', fromDate.value);
+        toDate.setAttribute('max', today);
+    }
+
+</script>
+</body>
+</html>
