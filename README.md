@@ -32,40 +32,6 @@ Before setting up the project, ensure you have the following installed:
 - MySQL Database
 - Postman (for API testing, optional)
 
-## Installation & Setup
-
-1. **Clone the repository**
-
-   ```sh
-   git clone https://github.com/siwakota/nrb-forex-exchange.git
-   cd nrb-forex-exchange
-   ```
-
-2. **Configure Database**
-
-   - Create a MySQL database named `nrb_forex`.
-   - Update `application.properties` or `application.yml` with your database credentials.
-
-3. **Build and Run the Application**
-
-   ```sh
-   mvn clean install
-   mvn spring-boot:run
-   ```
-
-4. **Access the API**
-
-   - Base URL: `http://localhost:8080/api/v1`
-   - Swagger UI: `http://localhost:8080/swagger-ui.html`
-
-## API Endpoints
-
-| Method | Endpoint                 | Description                            |
-| ------ | ------------------------ | -------------------------------------- |
-| GET    | `/exchange-rates/latest` | Get the latest exchange rates          |
-| GET    | `/exchange-rates/{date}` | Get exchange rates for a specific date |
-| POST   | `/exchange-rates`        | Add new exchange rate data             |
-
 ## Contributing
 
 Contributions are welcome! To contribute:
